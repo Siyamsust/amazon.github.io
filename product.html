@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <input type="text" class="js-image" placeholder="Image" required><br>
+    <input type="text" class="js-name" placeholder="Name" required><br>
+    <input type="number" class="js-ratings" placeholder="RatingStars" step="0.1" min="0" max="5" required><br>
+    <input type="number" class="js-rat-Cnt" placeholder="ratingCount" required><br>
+    <input type="number" class="js-pr-Cnts" placeholder="PriceCents" required><br>
+    <input type="text" class="js-key-wrd" placeholder="keywords" required><br>
+    <button class="button-primary">Add Product</button>
+
+</body>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.button-primary').addEventListener('click', () => {
+      const newProduct = {
+        id: (products.length + 1).toString(),
+        image: document.querySelector('.js-image').value,
+        name: document.querySelector('.js-name').value,
+        rating: {
+          stars: parseFloat(document.querySelector('.js-ratings').value),
+          count: parseInt(document.querySelector('.js-rat-Cnt').value)
+        },
+        priceCents: parseInt(document.querySelector('.js-pr-Cnts').value),
+        keywords: document.querySelector('.js-key-wrd').value.split(',')
+      };
+
+      products.push(newProduct);
+      console.log(products);
+    });
+  });
+</script>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amazon Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .product-container {
+      width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .product-image-container {
+      width: 100%;
+      height: 200px;
+      background-color: #eaeaea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-image {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+    }
+
+    .product-name {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+
+    .product-rating-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .product-rating-stars {
+      width: 100px;
+      margin-right: 8px;
+    }
+
+    .product-rating-count {
+      color: #007185;
+      font-size: 14px;
+    }
+
+    .product-price {
+      font-size: 20px;
+      color: #B12704;
+      margin-bottom: 15px;
+    }
+
+    .product-quantity-container {
+      margin-bottom: 15px;
+    }
+
+    .product-quantity-container select {
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    .added-to-cart {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: #007600;
+      margin-bottom: 15px;
+    }
+
+    .added-to-cart img {
+      margin-right: 5px;
+    }
+
+    .add-to-cart-button {
+      background-color: #ffa41c;
+      border: none;
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .add-to-cart-button:hover {
+      background-color: #ff8c00;
+    }
+
+    .product-input {
+      width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .product-input label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .product-input input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .product-input button {
+      background-color: #007185;
+      border: none;
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .product-input button:hover {
+      background-color: #005f63;
+    }
+  </style>
+</head>
+<body>
+
+<div class="product-input">
+  <h2>Add a Product</h2>
+  <form id="product-form">
+    <label for="product-id">Product ID:</label>
+    <input type="text" id="product-id" name="product-id" required>
+    
+    <label for="product-image">Product Image URL:</label>
+    <input type="text" id="product-image" name="product-image" required>
+    
+    <label for="product-name">Product Name:</label>
+    <input type="text" id="product-name" name="product-name" required>
+    
+    <label for="product-rating-stars">Product Rating (Stars):</label>
+    <input type="number" step="0.1" id="product-rating-stars" name="product-rating-stars" required>
+    
+    <label for="product-rating-count">Product Rating (Count):</label>
+    <input type="number" id="product-rating-count" name="product-rating-count" required>
+    
+    <label for="product-price">Product Price (Cents):</label>
+    <input type="number" id="product-price" name="product-price" required>
+    
+    <label for="product-keywords">Product Keywords (comma separated):</label>
+    <input type="text" id="product-keywords" name="product-keywords" required>
+    
+    <button type="submit">Add Product</button>
+  </form>
+</div>
+
+<div class="product-container">
+  <div class="product-image-container">
+    <img class="product-image" src="" alt="Product Image">
+  </div>
+
+  <div class="product-name limit-text-to-2-lines">
+    <!-- Product Name will be added here dynamically -->
+  </div>
+
+  <div class="product-rating-container">
+    <img class="product-rating-stars" src="" alt="Rating Stars">
+    <div class="product-rating-count link-primary">
+      <!-- Rating Count will be added here dynamically -->
+    </div>
+  </div>
+
+  <div class="product-price">
+    <!-- Product Price will be added here dynamically -->
+  </div>
+
+  <div class="product-quantity-container js-quantity">
+    <select>
+      <option selected="" value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+  </div>
+
+  <div class="product-spacer"></div>
+
+  <div class="added-to-cart">
+    <img src="images/icons/checkmark.png" alt="Checkmark">
+    Added
+  </div>
+
+  <button class="add-to-cart-button button-primary js-add-cart" data-product-id="">
+    Add to Cart
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const productForm = document.getElementById('product-form');
+    const productContainer = document.querySelector('.product-container');
+    const productImage = productContainer.querySelector('.product-image');
+    const productName = productContainer.querySelector('.product-name');
+    const productRatingStars = productContainer.querySelector('.product-rating-stars');
+    const productRatingCount = productContainer.querySelector('.product-rating-count');
+    const productPrice = productContainer.querySelector('.product-price');
+    const addToCartButton = productContainer.querySelector('.add-to-cart-button');
+
+    productForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const productId = document.getElementById('product-id').value;
+      const productImageUrl = document.getElementById('product-image').value;
+      const productNameValue = document.getElementById('product-name').value;
+      const productRatingStarsValue = document.getElementById('product-rating-stars').value;
+      const productRatingCountValue = document.getElementById('product-rating-count').value;
+      const productPriceValue = document.getElementById('product-price').value;
+      const productKeywordsValue = document.getElementById('product-keywords').value.split(',');
+
+      // Update the product container
+      productImage.src = productImageUrl;
+      productImage.style.display = 'block';
+      productName.textContent = productNameValue;
+      productRatingStars.src = `images/ratings/rating-${Math.round(productRatingStarsValue * 10)}.png`;
+      productRatingCount.textContent = productRatingCountValue;
+      productPrice.textContent = `$${(productPriceValue / 100).toFixed(2)}`;
+      addToCartButton.dataset.productId = productId;
+
+      // Log the product object
+      const product = {
+        id: productId,
+        image: productImageUrl,
+        name: productNameValue,
+        rating: {
+          stars: parseFloat(productRatingStarsValue),
+          count: parseInt(productRatingCountValue)
+        },
+        priceCents: parseInt(productPriceValue),
+        keywords: productKeywordsValue
+      };
+      console.log(product);
+
+      // Reset form
+      productForm.reset();
+    });
+  });
+</script>
+
+</body>
+</html>
